@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_10_003743) do
+ActiveRecord::Schema.define(version: 2020_11_10_004832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "pets", force: :cascade do |t|
+    t.string "name"
+    t.text "history"
+    t.string "sex"
+    t.string "size"
+    t.string "breed"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_pets_on_user_id"
+  end
+
+  create_table "rol_users", force: :cascade do |t|
+    t.bigint "rol_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rol_id"], name: "index_rol_users_on_rol_id"
+    t.index ["user_id"], name: "index_rol_users_on_user_id"
+  end
+
+  create_table "rols", force: :cascade do |t|
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,4 +54,7 @@ ActiveRecord::Schema.define(version: 2020_11_10_003743) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "pets", "users"
+  add_foreign_key "rol_users", "rols"
+  add_foreign_key "rol_users", "users"
 end
