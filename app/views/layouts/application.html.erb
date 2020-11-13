@@ -10,8 +10,13 @@
   </head>
 
   <body>
+    <%= render "shared/navbar" %>
+    <div class="container pt-5">
+      <%= yield %>
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/69487f609e.js" crossorigin="anonymous"></script>
   </body>
 </html>
