@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @pets = Pet.order(created_at: :desc)
+    @pets = Pet.all
   end
 end
