@@ -1,0 +1,15 @@
+es: 
+  datetime:
+    distance_in_words:
+      less_than_x_minutes:
+        one: "Menos de un minuto"
+        other: "Menos de %{count} minutos"
+      x_minutes:
+        one: "Hace 1 minuto"
+        other: "Hace %{count} minutos"
+      about_x_hours:
+        one: "Hace 1 hora"
+        other: "Hace %{count} horas"
+      x_days:
+        one: "Hace 1 día"
+        other: "Hace %{count} días"
