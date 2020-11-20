@@ -14,17 +14,7 @@
       <li class="nav-item">
          <%= link_to 'Pets', pets_path, class: 'nav-link' %>
       </li>
-      <%# <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> %>
+      
     </ul>
     <%# <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -34,9 +24,20 @@
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <%# <%= link_to image_tag(current_user.photo_url, class: 'avatar'), tweets_path, class: "avatar-box rounded-circle" %>
-        <%= link_to current_user.email , edit_user_registration_path, class:"nav-link text-reset"%> <!-- Link para editar -->
-       
-        <li class="nav-item"><%= link_to '<i class="fas fa-power-off fa-lg mr-2"></i>'.html_safe+' Cerrar Sesion', destroy_user_session_path, method: :delete, class:"nav-link text-reset"%></li>
+
+        <li class="nav-item dropdown">
+          
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-paw"></i>
+            <%= current_user.username %>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <%= link_to 'Mi Perfil' , home_profile_path, class:"dropdown-item"%>
+          <%= link_to 'Editar Perfil' , edit_user_registration_path, class:"dropdown-item"%> <!-- Link para editar -->
+            <div class="dropdown-divider"></div>
+            <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :delete, class:"dropdown-item"%>
+          </div>
+        </li>
       <% else %>
         <%= link_to '<i class="fas fa-sign-in-alt fa-lg mr-2"></i>'.html_safe+' Log in', new_user_session_path, class:"nav-link text-reset"%>
         <%= link_to 'Registro', new_user_registration_path, class:"nav-link text-reset"%>

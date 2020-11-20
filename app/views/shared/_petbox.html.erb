@@ -1,15 +1,21 @@
 
+
 <div class="col-sm-4 col-md-3 my-2">
-  <div class="card">
-    <% pet.photos.each do |photo| %>
-      <%= image_tag (photo),  class: "card-img-top" %>
-      
-    <% end %>
+    <div class="card">
+
+        <% if pet.photos.count > 1 %>
+            <%= carousel_for(pet.photos) %> 
+        <% else %>
+            <% pet.photos.each do |photo| %>
+            <%= image_tag (photo),  class: "card-img-top" %>
+            <% end %>
+        <% end %>
     
-    <div class="card-body">
-      <h5 class="card-title"><%= pet.name %></h5>
-      <p class="card-text"> <%= pet.history %></p>
-      <%= link_to 'Ver más', pet, class: "btn btn-primary" %>
+        
+        <div class="card-body">
+            <h5 class="card-title"><%= pet.name %></h5>
+            <p class="card-text"> <%= pet.history %></p>
+            <%= link_to 'Ver más', pet, class: "btn btn-primary" %>
+        </div>
     </div>
-  </div>
 </div>
