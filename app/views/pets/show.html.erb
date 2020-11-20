@@ -6,10 +6,9 @@
         <% if @pet.photos.count > 1 %>
             <%= carousel_for(@pet.photos) %> 
         <% else %>
-            <% @pet.photos.each do |photo| %>
-            <%= image_tag (photo),  class: "card-img-top" %>
-            <% end %>
+          <%= image_tag (@pet.photos.first),  class: "card-img-top" %>
         <% end %>
+
     
         
         <div class="card-body">
@@ -23,6 +22,10 @@
   <strong>Name:</strong>
   <%= @pet.name %>
 </p>
+
+
+  <%= @pet.user.username %>
+
 
 <p>
   <strong>History:</strong>
@@ -43,6 +46,7 @@
   <strong>Breed:</strong>
   <%= @pet.breed %>
 </p>
+
 
 
 <%= link_to 'Edit', edit_pet_path(@pet) %> |

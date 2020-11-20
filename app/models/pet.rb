@@ -3,8 +3,6 @@ class Pet < ApplicationRecord
   has_many_attached :photos,  dependent: :destroy
 
 
-  # def image_urls
-
-  # end
+  # scope :for_me, -> { where(user_id: = current_user.id)}
 end
  

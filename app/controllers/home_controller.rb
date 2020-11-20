@@ -6,7 +6,7 @@ class HomeController < ApplicationController
   end
 
   def profile
-    @pets = Pet.all
+    @pet = Pet.all
   end
   
   
