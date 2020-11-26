@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  question_pet: one
+  postulation_pet: one
+  text: MyText
+
+two:
+  question_pet: two
+  postulation_pet: two
+  text: MyText

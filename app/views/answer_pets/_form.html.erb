@@ -1,0 +1,32 @@
+<%= form_with(model: answer_pet, local: true) do |form| %>
+  <% if answer_pet.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(answer_pet.errors.count, "error") %> prohibited this answer_pet from being saved:</h2>
+
+      <ul>
+      <% answer_pet.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :question_pet_id %>
+    <%= form.text_field :question_pet_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postulation_pet_id %>
+    <%= form.text_field :postulation_pet_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :text %>
+    <%= form.text_area :text %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

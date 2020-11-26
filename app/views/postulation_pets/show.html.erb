@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pet:</strong>
+  <%= @postulation_pet.pet %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @postulation_pet.user %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @postulation_pet.state %>
+</p>
+
+<%= link_to 'Edit', edit_postulation_pet_path(@postulation_pet) %> |
+<%= link_to 'Back', postulation_pets_path %>

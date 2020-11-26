@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Postulation Pets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Pet</th>
+      <th>User</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @postulation_pets.each do |postulation_pet| %>
+      <tr>
+        <td><%= postulation_pet.pet %></td>
+        <td><%= postulation_pet.user %></td>
+        <td><%= postulation_pet.state %></td>
+        <td><%= link_to 'Show', postulation_pet %></td>
+        <td><%= link_to 'Edit', edit_postulation_pet_path(postulation_pet) %></td>
+        <td><%= link_to 'Destroy', postulation_pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Postulation Pet', new_postulation_pet_path %>

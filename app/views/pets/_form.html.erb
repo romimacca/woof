@@ -41,6 +41,22 @@
     <%= form.file_field :photos, multiple: true %>
   </div>
 
+  <div class="field"> 
+    <%= form.label :breed %>
+    <%= form.text_field :breed %>
+  </div>
+
+  <div class="field"> 
+    <%= form.label :question_ids %>
+     <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
+        <%= q.label class:"label-checkbox" do %>
+          <%= q.check_box + q.text %> 
+        <% end %>  
+      <% end %>
+
+   
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>

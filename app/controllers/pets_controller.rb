@@ -17,6 +17,9 @@ class PetsController < ApplicationController
   # GET /pets/new
   def new
     @pet = Pet.new
+    @questions = Question.all
+    
+
   end
 
   # GET /pets/1/edit
@@ -28,9 +31,11 @@ class PetsController < ApplicationController
   def create
     @pet = Pet.new(pet_params)
     @pet.user = current_user
-
+    
     respond_to do |format|
       if @pet.save
+        # @pet.question_pets << Question.where(id: params[:pet][:questions])
+        
         format.html { redirect_to @pet, notice: 'Pet was successfully created.' }
         format.json { render :show, status: :created, location: @pet }
       else
@@ -45,6 +50,7 @@ class PetsController < ApplicationController
   def update
     respond_to do |format|
       if @pet.update(pet_params)
+        
         format.html { redirect_to @pet, notice: 'Pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @pet }
       else
@@ -72,6 +78,6 @@ class PetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def pet_params
-      params.require(:pet).permit(:name, :history, :sex, :size, :breed, :user_id, photos: [] )
+      params.require(:pet).permit(:name, :history, :sex, :size, :breed, :user_id, :sterilized, :age, :adopted, { question_ids: []},  photos: [] )
     end
 end

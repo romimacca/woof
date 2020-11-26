@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  resources :questions
+  resources :answer_pets
+  resources :question_pets
+  resources :postulation_pets
   resources :pets
 
   devise_for :users, controllers: {

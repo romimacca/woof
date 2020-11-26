@@ -8,6 +8,7 @@ class User < ApplicationRecord
          
   has_many :pets
   has_one_attached :avatar, dependent: :destroy
+  has_many :postulation_pets, dependent: :destroy
   
 
   def self.from_omniauth(auth)
