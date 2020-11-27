@@ -18,12 +18,11 @@ class PetsController < ApplicationController
   def new
     @pet = Pet.new
     @questions = Question.all
-    
-
   end
 
   # GET /pets/1/edit
   def edit
+    @questions = Question.all
   end
 
   # POST /pets

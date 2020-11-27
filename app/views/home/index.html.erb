@@ -1,4 +1,19 @@
-<%= render "shared/slide" %> 
+<header>
+    <div class="row">
+        <div class="col-6 p-5 my-2">
+            <h1>Encuentra a tu mejor amigo</h1>
+            <p>Adoptar es el acto de amor más grande, dale un hogar a un perrito </p>
+            <%= link_to 'Buscar un perrito', new_pet_path, class: "btn btn-primary rounded-pill" %>
+            <%= link_to 'Publicar Perrito', new_pet_path, class: "btn btn-outline-primary rounded-pill" %>
+
+        </div>
+        <div class="col-6">
+            <%= image_tag ("bg-homepage_2.png"), class: "d-block w-100" %>
+        </div>
+    </div>
+    
+</header>
+
 
 <div class="row">
     <% @pets.each do |pet| %>

@@ -46,16 +46,18 @@
     <%= form.text_field :breed %>
   </div>
 
-  <div class="field"> 
-    <%= form.label :question_ids %>
-     <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
+  
+  <%= form.label :question_ids %>
+    <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
+      <div class="field"> 
         <%= q.label class:"label-checkbox" do %>
-          <%= q.check_box + q.text %> 
-        <% end %>  
-      <% end %>
+        <%= q.check_box + q.text %>   
+      </div>
+      <% end %>  
+    <% end %>
 
    
-  </div>
+
 
   <div class="actions">
     <%= form.submit %>
