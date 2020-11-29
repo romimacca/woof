@@ -9,6 +9,13 @@ class HomeController < ApplicationController
     @pet = Pet.all
   end
   
+  def my_pets
+    @pet = Pet.all
+  end
+
+  def my_postulations
+    @pet = Pet.all
+  end
   
   
 end

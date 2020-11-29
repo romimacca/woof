@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   get "home/profile"
+  get "home/my_pets"
+  get "home/my_postulations"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
