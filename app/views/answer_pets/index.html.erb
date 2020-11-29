@@ -15,8 +15,8 @@
   <tbody>
     <% @answer_pets.each do |answer_pet| %>
       <tr>
-        <td><%= answer_pet.question_pet %></td>
-        <td><%= answer_pet.postulation_pet %></td>
+        <td><%= answer_pet.question.id %></td>
+        <td><%= answer_pet.postulation_pet.id %></td>
         <td><%= answer_pet.text %></td>
         <td><%= link_to 'Show', answer_pet %></td>
         <td><%= link_to 'Edit', edit_answer_pet_path(answer_pet) %></td>

@@ -1,3 +1,8 @@
 <div class="container">
     <h1>Mis mascotas publicadas</h1>
+    <div class="row">
+        <% @pet.each do |pet| %>
+            <%= render "shared/petbox", pet: pet %> 
+        <% end %>
+    </div>
 </div>

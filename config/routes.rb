@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
   resources :questions
   resources :answer_pets
   resources :question_pets
@@ -12,8 +14,9 @@ Rails.application.routes.draw do
   }
 
   root to: "home#index"
-  get "home/profile"
-  get "home/my_pets"
-  get "home/my_postulations"
+  get "profile", to: "home#profile", as: "profile"
+  get "my_pets", to: "home#my_pets", as: "my_pets"
+  get "my_postulations", to: "home#my_postulations", as: "my_postulations"
+  get "pet/:pet_id/postulation", to: "home#pet_postulation", as: "pet_postulation"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

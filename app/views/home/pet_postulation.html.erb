@@ -1,8 +1,8 @@
 
 <div class="container">
-    <h1>Mis postulaciones</h1>
+    <h1>Mis postulaciones PET</h1>
 
-    <% @postulation_pets.each do |postulation_pet| %>
+    <% @pet_postulations.each do |postulation_pet| %>
       <tr>
         <td><%= link_to postulation_pet.pet.name, postulation_pet.pet  %></td>
         <td><%= postulation_pet.user.username %></td>

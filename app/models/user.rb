@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
          
-  has_many :pets
+  has_many :pets, dependent: :destroy
   has_one_attached :avatar, dependent: :destroy
   has_many :postulation_pets, dependent: :destroy
   

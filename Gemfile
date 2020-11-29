@@ -67,3 +67,6 @@ gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'activerecord-session_store'
+
+# Activeadmin
+gem 'activeadmin'

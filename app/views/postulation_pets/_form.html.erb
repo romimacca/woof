@@ -20,15 +20,20 @@
     <%= form.label :state %>
     <%= form.text_field :state %>
   </div>
-  
-   <% @questions.each do |q| %>
-     <div class="field"> 
-        <%= q.text %>  
-      </div>
-      <div class="field"> 
-         <%= form.text_field :answer_pets_id %>
-      </div>
-   <% end %>
+
+  <% @questions.each do |question| %>
+    <div class="field">
+      <%= question.text %>
+      <%= form.fields_for "answer_pets[]", question.answer_pets.build do |answer_form| %>
+          <%= answer_form.hidden_field :question_id, value: question.id %>
+          <%= answer_form.text_field :text, value: @postulation_pet.getAnswer(@postulation_pet.id , question.id) %>
+      <% end %>
+     </div>
+  <% end %>
+
+
+
+
    
 
   <div class="actions">

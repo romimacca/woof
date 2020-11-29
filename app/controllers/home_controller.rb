@@ -6,16 +6,21 @@ class HomeController < ApplicationController
   end
 
   def profile
-    @pet = Pet.all
+    @pet = Pet.where(user_id: current_user.id ).order(created_at: :asc)
   end
   
   def my_pets
-    @pet = Pet.all
+    @pet = Pet.where(user_id: current_user.id ).order(created_at: :asc)
   end
 
   def my_postulations
-    @pet = Pet.all
+    @postulation_pets = PostulationPet.where(user_id: current_user.id)
   end
+
+  def pet_postulation
+   @pet_postulations = PostulationPet.where(pet_id: params[:pet_id].to_i)
+  end
+  
   
   
 end

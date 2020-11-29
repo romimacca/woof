@@ -9,31 +9,31 @@ class PostulationPetsController < ApplicationController
 
   # GET /postulation_pets/1
   # GET /postulation_pets/1.json
-  def show
+  def show 
   end
 
   # GET /postulation_pets/new
   def new
     @postulation_pet = PostulationPet.new
     @postulation_pet.user = current_user
-    @postulation_pet.pet = Pet.where(id: params[:pet_id]).first
-
-    # Pet.left_outer_joins(:question_pets)
-    
-    @questions = Question.joins(question_pets: :pet).where("pets.id= "+params[:pet_id]).all
+    @postulation_pet.pet = Pet.where(id: params[:pet_id]).first    
+    @questions = Question.joins(question_pets: :pet).where("pets.id= "+params[:pet_id]).all    
   end
 
   # GET /postulation_pets/1/edit
   def edit
+    @questions = Question.joins(question_pets: :pet).where("pets.id= "+@postulation_pet.pet_id.to_s).all 
   end
 
   # POST /postulation_pets
   # POST /postulation_pets.json
   def create
     @postulation_pet = PostulationPet.new(postulation_pet_params)
-
     respond_to do |format|
       if @postulation_pet.save
+
+        @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
+
         format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully created.' }
         format.json { render :show, status: :created, location: @postulation_pet }
       else
@@ -48,6 +48,9 @@ class PostulationPetsController < ApplicationController
   def update
     respond_to do |format|
       if @postulation_pet.update(postulation_pet_params)
+
+        @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
+
         format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @postulation_pet }
       else

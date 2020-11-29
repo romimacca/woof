@@ -15,5 +15,11 @@
   <%= @postulation_pet.state %>
 </p>
 
+<% @postulation_pet.answer_pets.each do |answer|  %>
+  <%= answer.question.text %>
+  <%= answer.text %>
+<% end %>
+
+
 <%= link_to 'Edit', edit_postulation_pet_path(@postulation_pet) %> |
 <%= link_to 'Back', postulation_pets_path %>
