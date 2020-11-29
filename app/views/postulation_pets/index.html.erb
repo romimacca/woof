@@ -2,7 +2,7 @@
 
 <h1>Postulation Pets</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Pet</th>
@@ -15,8 +15,8 @@
   <tbody>
     <% @postulation_pets.each do |postulation_pet| %>
       <tr>
-        <td><%= postulation_pet.pet %></td>
-        <td><%= postulation_pet.user %></td>
+        <td><%= link_to postulation_pet.pet.name, postulation_pet.pet  %></td>
+        <td><%= postulation_pet.user.username %></td>
         <td><%= postulation_pet.state %></td>
         <td><%= link_to 'Show', postulation_pet %></td>
         <td><%= link_to 'Edit', edit_postulation_pet_path(postulation_pet) %></td>

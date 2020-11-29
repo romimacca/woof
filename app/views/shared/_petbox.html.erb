@@ -1,6 +1,6 @@
 
 
-<div class="col-sm-4 col-md-3 my-2">
+<div class="col-sm-4 col-md-3 my-2 rounded-lg">
     <div class="card">
 
         <% if pet.photos.count > 1 %>
@@ -15,6 +15,8 @@
             <p class="card-text"> <%= pet.history %></p>
             <%= link_to 'Ver más', pet, class: "btn btn-primary" %>
             <%= link_to 'Adoptar', pet, class: "btn btn-primary" %>
+            <%= link_to 'New Postulation Pet', new_postulation_pet_path(pet_id: pet.id) %>
+
         </div>
     </div>
 </div>

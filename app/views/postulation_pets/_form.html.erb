@@ -11,21 +11,30 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :pet_id %>
-    <%= form.text_field :pet_id %>
-  </div>
+  
+  <%= form.hidden_field :pet_id %>
+  <%= form.hidden_field :user_id %>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
 
 
   <div class="field">
     <%= form.label :state %>
     <%= form.text_field :state %>
   </div>
+  
+   <% @questions.each do |q| %>
+     <div class="field"> 
+        <%= q.text %>  
+      </div>
+      <div class="field"> 
+         <%= form.text_field :answer_pets_id %>
+      </div>
+
+
+      
+   <% end %>
+   
+
 
   <div class="actions">
     <%= form.submit %>

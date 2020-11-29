@@ -15,6 +15,12 @@ class PostulationPetsController < ApplicationController
   # GET /postulation_pets/new
   def new
     @postulation_pet = PostulationPet.new
+    @postulation_pet.user = current_user
+    @postulation_pet.pet = Pet.where(id: params[:pet_id]).first
+
+    # Pet.left_outer_joins(:question_pets)
+    
+    @questions = Question.joins(question_pets: :pet).where("pets.id= "+params[:pet_id]).all
   end
 
   # GET /postulation_pets/1/edit
@@ -69,6 +75,6 @@ class PostulationPetsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def postulation_pet_params
-      params.require(:postulation_pet).permit(:pet_id, :user_id, :state)
+      params.require(:postulation_pet).permit(:pet_id, :user_id, { question_ids: []}, {answer_pet_id: []}, :state )
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_26_013613) do
+ActiveRecord::Schema.define(version: 2020_11_28_195048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,13 +37,13 @@ ActiveRecord::Schema.define(version: 2020_11_26_013613) do
   end
 
   create_table "answer_pets", force: :cascade do |t|
-    t.bigint "question_pet_id"
     t.bigint "postulation_pet_id"
+    t.bigint "question_id"
     t.text "text"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["postulation_pet_id"], name: "index_answer_pets_on_postulation_pet_id"
-    t.index ["question_pet_id"], name: "index_answer_pets_on_question_pet_id"
+    t.index ["question_id"], name: "index_answer_pets_on_question_id"
   end
 
   create_table "pets", force: :cascade do |t|
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(version: 2020_11_26_013613) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answer_pets", "postulation_pets"
-  add_foreign_key "answer_pets", "question_pets"
+  add_foreign_key "answer_pets", "questions"
   add_foreign_key "pets", "users"
   add_foreign_key "photos", "pets"
   add_foreign_key "postulation_pets", "pets"
