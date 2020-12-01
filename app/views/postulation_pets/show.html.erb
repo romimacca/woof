@@ -2,23 +2,38 @@
 
 <p>
   <strong>Pet:</strong>
-  <%= @postulation_pet.pet %>
+  <%= @postulation_pet.pet.name %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @postulation_pet.user %>
+  <%= @postulation_pet.user.username %>
 </p>
 
-<p>
-  <strong>State:</strong>
-  <%= @postulation_pet.state %>
-</p>
+<% if current_user == @postulation_pet.pet.user%>
+  <%= form_with(model: @postulation_pet, local: true) do |form| %>
+    <div class="field  form-group">
+      <%= form.label :state %>
+      <%= form.select :state, PostulationPet.states.keys, {class: 'form-control'}, value: @postulation_pet.state  %>
+      
+    </div>
+    <div class="actions">
+      <%= form.submit %>
+    </div>
+  <% end %>
+<% else %>
+  <p>
+    <strong>State:</strong>
+    <%= @postulation_pet.state %>
+  </p>
+<% end %>
 
 <% @postulation_pet.answer_pets.each do |answer|  %>
   <%= answer.question.text %>
   <%= answer.text %>
 <% end %>
+
+
 
 
 <%= link_to 'Edit', edit_postulation_pet_path(@postulation_pet) %> |

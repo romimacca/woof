@@ -3,6 +3,8 @@ class PostulationPet < ApplicationRecord
   belongs_to :user
   
   has_many :answer_pets, dependent: :destroy
+  validates_presence_of :state
+  enum state: [ :revision, :aceptado, :rechazado ]
 
   def addAnswer(answers, postulation_pet_id)
     answers.each do |answer|
@@ -20,5 +22,8 @@ class PostulationPet < ApplicationRecord
     end
   end
 
-
+  def setAdopted(pet_id, is_adopted)
+    self.pet.is_adopted = is_adopted
+    self.pet.save
+  end
 end

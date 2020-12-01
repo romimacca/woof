@@ -1,13 +1,23 @@
-<h1><%= current_user.username %></h1>
+<div class="container">
+    <h1>Perfil</h1>
+    <div class="row">
+        <div class="col-6">
+            <%= current_user.username %>
+            <%= current_user.email %>
+        </div>
+         <div class="col-6">
+        </div>
 
-<div class="row">
+    </div>
+    <div class="row">
 
-<% @pet.each do |pet| %>
-    <% if pet.user_id == current_user.id %>
-         <%= render "shared/petbox", pet: pet %> 
+        <% @pet.each do |pet| %>
+            <% if pet.user_id == current_user.id %>
+                <%= render "shared/petbox", pet: pet %> 
 
-    <% end %>
-<% end %>
+            <% end %>
+        <% end %>
 
-   
- </div>
+    
+    </div>
+</div>

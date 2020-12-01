@@ -14,12 +14,7 @@
   
   <%= form.hidden_field :pet_id %>
   <%= form.hidden_field :user_id %>
-
-
-  <div class="field">
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
+  <%= form.hidden_field :state %>
 
   <% @questions.each do |question| %>
     <div class="field">

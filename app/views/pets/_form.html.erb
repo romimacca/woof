@@ -1,3 +1,4 @@
+
 <%= form_with(model: pet, local: true) do |form| %>
   <% if pet.errors.any? %>
     <div id="error_explanation">
@@ -15,15 +16,19 @@
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
-
-  <div class="field">
-    <%= form.label :history %>
-    <%= form.text_area :history %>
+  <div class="field"> 
+    <%= form.label :age %>
+    <%= form.text_field :age %>
   </div>
 
   <div class="field">
     <%= form.label :sex %>
     <%= form.text_field :sex %>
+  </div>
+
+  <div class="field"> 
+    <%= form.label :sterilized %>
+    <%= form.text_field :sterilized %>
   </div>
 
   <div class="field">
@@ -46,6 +51,13 @@
     <%= form.text_field :breed %>
   </div>
 
+
+   <div class="field">
+    <%= form.label :history %>
+    <%= form.text_area :history %>
+  </div>
+  
+
   
   <%= form.label :question_ids %>
     <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
@@ -63,3 +75,4 @@
     <%= form.submit %>
   </div>
 <% end %>
+

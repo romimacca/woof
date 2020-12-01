@@ -12,7 +12,9 @@
         
         <div class="card-body">
             <h5 class="card-title"><%= pet.name %></h5>
-            <p class="card-text"> <%= pet.history %></p>
+            <p class="card-text"> <%= pet.user.username %></p>
+             <p class="card-text"> <%= pet.age %></p>
+            <p class="card-text"> <%= pet.created_at %></p>
             <%= link_to 'Ver más', pet, class: "btn btn-primary" %>
             <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: pet.id), class: "btn btn-primary" %>
             <%= link_to 'Postulaciones', pet_postulation_path(pet_id: pet.id) %>

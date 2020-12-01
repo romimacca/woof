@@ -49,7 +49,10 @@ class PostulationPetsController < ApplicationController
     respond_to do |format|
       if @postulation_pet.update(postulation_pet_params)
 
-        @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
+        if params[:postulation_pet].has_key?(:answer_pets)
+          @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
+        end
+        @postulation_pet.setAdopted(params[:postulation_pet][:pet_id], params[:postulation_pet][:state]== 1 ) 
 
         format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @postulation_pet }

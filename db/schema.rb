@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_29_014350) do
+ActiveRecord::Schema.define(version: 2020_12_01_020949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 2020_11_29_014350) do
     t.datetime "updated_at", null: false
     t.boolean "sterilized"
     t.integer "age"
-    t.boolean "adopted"
+    t.boolean "is_adopted", default: false
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
@@ -97,9 +97,9 @@ ActiveRecord::Schema.define(version: 2020_11_29_014350) do
   create_table "postulation_pets", force: :cascade do |t|
     t.bigint "pet_id"
     t.bigint "user_id"
-    t.string "state"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "state", default: 0
     t.index ["pet_id"], name: "index_postulation_pets_on_pet_id"
     t.index ["user_id"], name: "index_postulation_pets_on_user_id"
   end
