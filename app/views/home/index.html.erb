@@ -1,12 +1,11 @@
-
 <%= render "shared/header" %> 
-
-
 <div class="container">
     <div class="row">
-        <% @pets.each do |pet| %>
+        <% @pet_available.each do |pet| %>
             <%= render "shared/petbox", pet: pet %> 
         <% end %>
     </div>
  </div>
+
+ <%# <%= link_to "Enviar email", send_email_path %>
  

@@ -71,3 +71,6 @@ gem 'activerecord-session_store'
 # Activeadmin
 gem 'activeadmin'
 gem 'chartkick'
+
+#Send Email
+gem 'sendgrid-ruby'

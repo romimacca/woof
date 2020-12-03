@@ -6,6 +6,9 @@ class Pet < ApplicationRecord
   has_many :question_pets, dependent: :destroy
   has_many :questions, through: :question_pets, dependent: :destroy
 
-
+  def getPetAdopted(is_adopted)
+    Pet.where(is_adopted: is_adopted)
+  end
+  
 end
  
