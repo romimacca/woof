@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_020949) do
+ActiveRecord::Schema.define(version: 2020_12_01_231501) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,18 +50,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_020949) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "admin_users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_admin_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
-  end
-
   create_table "answer_pets", force: :cascade do |t|
     t.bigint "postulation_pet_id"
     t.text "text"
@@ -83,7 +71,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_020949) do
     t.datetime "updated_at", null: false
     t.boolean "sterilized"
     t.integer "age"
-    t.boolean "is_adopted", default: false
+    t.boolean "is_adopted", default: true
     t.index ["user_id"], name: "index_pets_on_user_id"
   end
 
@@ -152,6 +140,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_020949) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
+    t.boolean "admin"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

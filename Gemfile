@@ -70,3 +70,4 @@ gem 'activerecord-session_store'
 
 # Activeadmin
 gem 'activeadmin'
+gem 'chartkick'
