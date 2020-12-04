@@ -26,7 +26,7 @@
                 <% if pet.user_id != current_user.id %>
                     <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: pet.id), class: "btn btn-primary" %>
 
-                <% elsif pet.user_id == current_user.id %>
+                <% elsif pet.user_id == current_user.id || current_user.admin == true%>
                     <%= link_to "#{pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: pet.id), class: "btn btn-primary"  %>
                 <% end %>
             

@@ -20,7 +20,5 @@ module SendemailHelper
 
         sg = SendGrid::API.new(api_key: ENV['API_SENDGRID_TOKEN'])
         response = sg.client.mail._("send").post(request_body: data) 
-
-
     end
 end

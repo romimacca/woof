@@ -12,7 +12,7 @@
     </div>
     <div class="show-pet-info rounded-lg col-sm-12 col-md-6 my-2 p-4">
       <div class="header-pet border-bottom row p-1 mb-3">
-        <div class="col-9">
+        <div class="col-8">
           <h2> <%= @pet.name %>,  <small>(<%= @pet.age %>)</small></h2>
           <p>
             <strong>Publicada por:</strong>
@@ -20,13 +20,13 @@
           </p>
         
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <% if user_signed_in? %>
             <% if @pet.user_id != current_user.id %>
               <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: @pet.id), class: "btn btn-primary" %>
             <% elsif @pet.user_id == current_user.id %>
-              <%= link_to 'Edit', edit_pet_path(@pet), class: "btn btn-outline-secondary rounded-pill float-right" %> 
-              <%= link_to 'Destroy', @pet, method: :delete, data: { confirm: 'Are you sure?' } %>
+              <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, @pet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary rounded-pill float-right ml-1" %>
+              <%= link_to 'Editar', edit_pet_path(@pet), class: "btn btn-outline-secondary rounded-pill float-right" %> 
             <% end %>
             
           <% end %>
@@ -34,7 +34,7 @@
         </div>
         <% if user_signed_in? %>
           <% if  @pet.user_id == current_user.id %>
-            <div class="col-12">
+            <div class="col-12 mb-2">
               <%= link_to "#{@pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: @pet.id), class: "btn btn-primary rounded-pill w-100"  %>
             </div>
           <% end %>
@@ -45,7 +45,7 @@
       </div>
       <div class="content-pet">
           <p>
-            <strong>Sex</strong>
+            <strong>Sexo</strong>
             <% if @pet.sex != "" %>
                 <%= @pet.sex %>
             <% else %>
@@ -54,7 +54,7 @@
           </p>
         
           <p>
-            <strong>Size</strong>
+            <strong>Tamaño</strong>
             <% if @pet.size != "" %>
               <%= @pet.size %>
             <% else %>
@@ -63,7 +63,7 @@
           </p>
         
           <p>
-            <strong>Breed</strong>
+            <strong>Raza</strong>
             <% if @pet.breed != "" %>
               <%= @pet.breed %>
             <% else %>
@@ -72,7 +72,7 @@
           </p>
         
           <p>
-            <strong>History</strong>
+            
             <% if @pet.history != "" %>
               <%= @pet.history %>
             <% else %>
