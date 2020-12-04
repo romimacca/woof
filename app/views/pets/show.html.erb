@@ -8,6 +8,11 @@
             <% else %>
               <%= image_tag (@pet.photos.first),  class: "card-img-top rounded-lg" %>
             <% end %>
+
+             <% if @pet.is_adopted == true %>
+            <span class="chip done"> adoptado</span>
+        <% end %>
+
         </div>
     </div>
     <div class="show-pet-info rounded-lg col-sm-12 col-md-6 my-2 p-4">
@@ -21,27 +26,32 @@
         
         </div>
         <div class="col-4">
-          <% if user_signed_in? %>
-            <% if @pet.user_id != current_user.id %>
-              <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: @pet.id), class: "btn btn-primary" %>
-            <% elsif @pet.user_id == current_user.id %>
-              <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, @pet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary rounded-pill float-right ml-1" %>
-              <%= link_to 'Editar', edit_pet_path(@pet), class: "btn btn-outline-secondary rounded-pill float-right" %> 
-            <% end %>
-            
+          <% if user_signed_in? && (@pet.user_id != current_user.id) %>
+             <% if @pet.hasPostulation(current_user.id, @pet.id)  %>
+                <%= link_to 'Postulando', my_postulations_path, class: "btn btn-success w-100 mb-1" %>
+              <% else %>
+                <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: @pet.id), class: "btn btn-primary w-100 mb-1" %>
+              <% end %>
+              
+          <% end %>
+          
+          <% if user_signed_in? && (@pet.user_id == current_user.id || current_user.is_admin? )%>
+            <%= link_to '<i class="far fa-trash-alt"></i>'.html_safe, @pet, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-secondary rounded-pill float-right ml-1" %>
+            <%= link_to 'Editar', edit_pet_path(@pet), class: "btn btn-outline-secondary rounded-pill float-right" %> 
           <% end %>
             
         </div>
-        <% if user_signed_in? %>
-          <% if  @pet.user_id == current_user.id %>
-            <div class="col-12 mb-2">
-              <%= link_to "#{@pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: @pet.id), class: "btn btn-primary rounded-pill w-100"  %>
-            </div>
+        <% if user_signed_in? && (@pet.user_id == current_user.id || current_user.is_admin? )%>
+          <div class="col-12 mb-2">
+           <% if @pet.is_adopted == true %>
+              <span class="btn  btn-success  rounded-pill w-100"> Adoptado</span>
+          <% else%>
+            <%= link_to "#{@pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: @pet.id), class: "btn  btn-outline-info rounded-pill w-100"  %>
+          
           <% end %>
-        
-        <% end %>
-        
-        
+          
+          </div>
+        <% end %>    
       </div>
       <div class="content-pet">
           <p>
@@ -50,6 +60,14 @@
                 <%= @pet.sex %>
             <% else %>
                 <i>Sin especificar </i>
+            <% end %>
+          </p>
+          <p>
+            <strong>Esterilzada</strong>
+            <% if @pet.sterilized == true %>
+              Si
+            <% else %>
+              No 
             <% end %>
           </p>
         
@@ -70,17 +88,18 @@
               <i>Sin especificar </i>
             <% end %>
           </p>
+         
+
         
-          <p>
-            
-            <% if @pet.history != "" %>
-              <%= @pet.history %>
-            <% else %>
-              <i>Sin especificar </i>
-            <% end %>
-          </p>
-        
+          <% if @pet.history != "" %>
+            <p>
+                <%= @pet.history %>
+            </p>
+          <% end %>
+
       </div>
+
+  
      
 
       

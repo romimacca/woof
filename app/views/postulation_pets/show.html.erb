@@ -1,40 +1,53 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Pet:</strong>
-  <%= @postulation_pet.pet.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @postulation_pet.user.username %>
-</p>
-
-<% if current_user == @postulation_pet.pet.user%>
-  <%= form_with(model: @postulation_pet, local: true) do |form| %>
-    <div class="field  form-group">
-      <%= form.label :state %>
-      <%= form.select :state, PostulationPet.states.keys, {class: 'form-control'}, value: @postulation_pet.state  %>
-      
+<div class="container">
+  <div class="row p-3">
+    <div class="col-sm-12 col-md-6 my-2">
+      <%= image_tag (@postulation_pet.pet.photos.first),  class: "card-img-top rounded-lg" %>
     </div>
-    <div class="actions">
-      <%= form.submit %>
+    <div class="show-pet-info rounded-lg col-sm-12 col-md-6 my-2 p-4">
+    <div class="header-pet border-bottom row p-1 mb-3">
+    <h2> <%= @postulation_pet.pet.name %>,  <small>(<%= @postulation_pet.pet.age %>)</small></h2>
+    <p class="w-100"> Cuidador actual: <b> <%= @postulation_pet.pet.user.username %></b></p>
+    <h4 class="w-100"> Postulante: <b> <%= @postulation_pet.user.username %></b></h4>
+
+
+      <% if current_user == @postulation_pet.pet.user%>
+        <%= form_with(model: @postulation_pet, local: true) do |form| %>
+          <div class="field  form-group ">
+            <%= form.label :state %>
+            <%= form.select :state, PostulationPet.states.keys, {class: 'form-control'}, value: @postulation_pet.state  %>
+            
+          </div>
+          <div class="actions">
+            <%= form.submit "Actualizar postulacion", class: "rounded-pill btn btn-primary w-100 "  %>
+          </div>
+        <% end %>
+      <% else %>
+        <p>
+          <strong>State:</strong>
+          <%= @postulation_pet.state %>
+        </p>
+      <% end %>
     </div>
-  <% end %>
-<% else %>
-  <p>
-    <strong>State:</strong>
-    <%= @postulation_pet.state %>
-  </p>
-<% end %>
+    <div class="content-pet">
+      <% @postulation_pet.answer_pets.each do |answer|  %>
+       <p>
+        <strong><%= answer.question.text %></strong>
+        <% if answer.text == "" %>
+          <i>No contestó</i>
+        <% else %>
+          <%= answer.text %>
+        <% end %>
+        </p>
+      <% end %>
+ 
+    </div>
+    <% if current_user == @postulation_pet.user%> 
+    <%= link_to 'Edit', edit_postulation_pet_path(@postulation_pet), class: "rounded-pill btn btn-primary w-100 " %> 
+    <% end %>
+    
+<%= link_to 'Back', root_path %>
+    </div>
 
-<% @postulation_pet.answer_pets.each do |answer|  %>
-  <%= answer.question.text %>
-  <%= answer.text %>
-<% end %>
+  </div>
 
-
-
-
-<%= link_to 'Edit', edit_postulation_pet_path(@postulation_pet) %> |
-<%= link_to 'Back', postulation_pets_path %>
+</div>

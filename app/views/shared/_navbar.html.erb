@@ -13,10 +13,10 @@
           <%= link_to '<i class="fas fa-home fa-lg mr-2"></i>'.html_safe, root_path, class: 'nav-link' %>
         </li>
         <% if user_signed_in? %>
-      
           <li class="nav-item">
             <%= link_to 'Publicaciones', my_pets_path, class: 'nav-link' %>
           </li>
+            
           <li class="nav-item">
             <%= link_to 'Postulaciones', my_postulations_path, class: 'nav-link' %>
           </li>
@@ -43,6 +43,12 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <%= link_to 'Mi Perfil' , profile_path, class:"dropdown-item"%>
             <%= link_to 'Editar Perfil' , edit_user_registration_path, class:"dropdown-item"%> <!-- Link para editar -->
+              
+              <% if current_user.is_admin? %>
+                <div class="dropdown-divider"></div>
+                <%= link_to ' Administrador' , admin_root_path, class:"dropdown-item"%> <!-- Link para editar -->
+              <% end %>
+              
               <div class="dropdown-divider"></div>
               <%= link_to 'Cerrar Sesion', destroy_user_session_path, method: :get, class:"dropdown-item"%>
             </div>

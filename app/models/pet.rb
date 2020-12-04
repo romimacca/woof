@@ -15,8 +15,17 @@ class Pet < ApplicationRecord
   end
 
   def to_s
-    self.email
+    self.name
   end
+  
+  def hasPostulation(user_id, pet_id)
+    if self.postulation_pets.where(user_id: user_id, pet_id: pet_id).first
+      true
+    else
+      false
+    end
+  end
+
   
 end
  

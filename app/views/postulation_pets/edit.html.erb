@@ -1,6 +1,8 @@
-<h1>Editing Postulation Pet</h1>
+<div id="postulations-edit" class="container new_postulation">
+<h1>Editar postulación para <b><%= @postulation_pet.pet%></b></h1>
 
 <%= render 'form', postulation_pet: @postulation_pet %>
 
 <%= link_to 'Show', @postulation_pet %> |
-<%= link_to 'Back', postulation_pets_path %>
+<%= link_to 'Back', my_postulations_path %>
+</div>

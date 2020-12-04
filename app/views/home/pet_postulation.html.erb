@@ -1,15 +1,34 @@
 
 <div class="container">
     <h1>Mis postulaciones PET</h1>
+    <% if @pet_postulations.any? %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Pet</th>
+            <th>User</th>
+            <th>State</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
 
-    <% @pet_postulations.each do |postulation_pet| %>
-      <tr>
-        <td><%= link_to postulation_pet.pet.name, postulation_pet.pet  %></td>
-        <td><%= postulation_pet.user.username %></td>
-        <td><%= postulation_pet.state %></td>
-        <td><%= link_to 'Show', postulation_pet %></td>
-        <td><%= link_to 'Edit', edit_postulation_pet_path(postulation_pet) %></td>
-        <td><%= link_to 'Destroy', postulation_pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+        <tbody>
+          <% @pet_postulations.each do |postulation_pet| %>
+            <tr>
+              <td><%= link_to postulation_pet.pet.name, postulation_pet.pet  %></td>
+              <td><%= postulation_pet.user.username %></td>
+              <td><%= postulation_pet.state %></td>
+              <td><%= link_to 'Show', postulation_pet %></td>
+              <td><%= link_to 'Edit', edit_postulation_pet_path(postulation_pet) %></td>
+              <td><%= link_to 'Destroy', postulation_pet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% else %>
+          <div class="alert alert-warning" role="alert">
+            No has postulado para adoptar
+        </div>
+      
+      <% end %>
 </div>

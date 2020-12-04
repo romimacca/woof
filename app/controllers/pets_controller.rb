@@ -6,7 +6,7 @@ class PetsController < ApplicationController
   # GET /pets.json
   def index
     @pets = Pet.all
-   
+ 
   end
 
   # GET /pets/1

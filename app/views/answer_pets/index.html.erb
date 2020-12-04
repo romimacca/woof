@@ -1,3 +1,5 @@
+<div class="container">
+<% if current_user.is_admin? %>
 <p id="notice"><%= notice %></p>
 
 <h1>Answer Pets</h1>
@@ -29,3 +31,9 @@
 <br>
 
 <%= link_to 'New Answer Pet', new_answer_pet_path %>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    No tienes permiso para ver esta seccion
+  </div>
+<% end %>
+</div>

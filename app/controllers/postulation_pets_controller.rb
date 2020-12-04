@@ -64,7 +64,7 @@ class PostulationPetsController < ApplicationController
           send_mail(@postulation_pet.user.email, "Lo sentimos, han rechazado tu postulación", "RECHAZADO" )
         end
 
-        format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Postulation pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @postulation_pet }
         
 
@@ -80,7 +80,7 @@ class PostulationPetsController < ApplicationController
   def destroy
     @postulation_pet.destroy
     respond_to do |format|
-      format.html { redirect_to postulation_pets_url, notice: 'Postulation pet was successfully destroyed.' }
+      format.html { redirect_to my_postulations_path, notice: 'Postulation pet was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

@@ -11,63 +11,68 @@
       </ul>
     </div>
   <% end %>
-  <div class="form-group">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control" %>
-  </div>
-  <div class="field"> 
-    <%= form.label :age %>
-    <%= form.text_field :age, class: "form-control" %>
-  </div>
+  <div class="form-group row">
 
-  <div class="field">
-    <%= form.label :sex %>
-    <%= form.text_field :sex, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-4">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control", :required => true %>
+    </div>
 
-  <div class="field"> 
-    <%= form.label :sterilized %>
-    <%= form.text_field :sterilized, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-4"> 
+      <%= form.label :age %>
+      <%= form.text_field :age, class: "form-control", :required => true%>
+    </div>
 
-  <div class="field">
-    <%= form.label :size %>
-    <%= form.text_field :size, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-4">
+      <%= form.label :sex %>
+      <%= form.text_field :sex, class: "form-control", :required => true %>
+    </div>
 
-  <div class="field">
-    <%= form.label :breed %>
-    <%= form.text_field :breed, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-4"> 
+      <%= form.label :sterilized %>
+      <%= form.text_field :sterilized, class: "form-control", :required => true %>
+    </div>
+
+    <div class="field my-3 col-sm-12 col-md-4">
+      <%= form.label :size %>
+      <%= form.text_field :size, class: "form-control", :required => true %>
+    </div>
+
+    <div class="field my-3 col-sm-12 col-md-4">
+      <%= form.label :breed %>
+      <%= form.text_field :breed, class: "form-control", :required => true %>
+    </div>
 
 
 
-   <div class="field">
-    <%= form.label :history %>
-    <%= form.text_area :history, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-12">
+      <%= form.label :history %>
+      <%= form.text_area :history, class: "form-control", :required => true %>
+    </div>
   
-  <div class="field">
-    <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true, class: "form-control" %>
-  </div>
+    <div class="field my-3 col-sm-12 col-md-12">
+      <%= form.label :photos %>
+      <%= form.file_field :photos, multiple: true, class: "w-100", :required => true%>
+    </div>
   
-  <%= form.label :question_ids %>
-    <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
-      <div class="field"> 
-        <%= q.label class:"label-checkbox" do %>
-        <%= q.check_box + q.text %>   
-      </div>
-      <% end %>  
-    <% end %>
+    <div class="col-sm-12 col-md-12 my-3">
+    <div class="row">
+      <%= form.label :question_ids, class: "col-sm-12 col-md-12" %>
+        <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>
+          <div class="field my-3 col-sm-12 col-md-6"> 
+            <%= q.label class:"label-checkbox" do %>
+              <%= q.check_box + q.text %>   
+            <% end %> 
+          </div>
+        <% end %>
+      </div> 
+    </div>
 
-   
-
-
-  <div class="actions">
-    <%= form.submit %>
+    <div class="actions">
+      <%= form.submit "Publicar nueva mascota", class: "btn btn-lg btn-primary btn-block"  %>
+    </div>
   </div>
-<% end %>
+<%end %>
+
 

@@ -17,23 +17,22 @@
             <h5 class="card-title"><%= pet.name %>, <small>(<%= pet.age %>)</small></h5>
             <p class="card-text"> <%= pet.user.username %></p>
             
-
-
-
-
             <%= link_to 'Ver más', pet, class: "btn btn-primary" %>
-            <% if user_signed_in? %>
-                <% if pet.user_id != current_user.id %>
-                    <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: pet.id), class: "btn btn-primary" %>
-
-                <% elsif pet.user_id == current_user.id || current_user.admin == true%>
-                    <%= link_to "#{pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: pet.id), class: "btn btn-primary"  %>
+            <% if user_signed_in? && (pet.user_id != current_user.id) %>
+                <% if pet.hasPostulation(current_user.id, pet.id)  %>
+                    <%= link_to 'Postulando', my_postulations_path, class: "btn btn-success" %>
+                
+                <% else %>
+                <%= link_to 'Adoptar', new_postulation_pet_path(pet_id: pet.id), class: "btn btn-primary" %>
                 <% end %>
-            
-            <% end %>
-            
                 
 
+            <% end %>
+            <% if user_signed_in? && (pet.user_id == current_user.id || current_user.is_admin? )%>
+                <%= link_to "#{pet.postulation_pets.count} Postulaciones", pet_postulation_path(pet_id: pet.id), class: "btn btn-outline-info mt-2 w-100 rounded-pill"  %>
+            <% end %>
+             
+            
         </div>
     </div>
 </div>

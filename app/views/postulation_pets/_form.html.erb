@@ -1,4 +1,4 @@
-<%= form_with(model: postulation_pet, remote: true, turbolink: false) do |form| %>
+<%= form_with(model: postulation_pet, remote: true,  turbolink: false) do |form| %>
   <% if postulation_pet.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(postulation_pet.errors.count, "error") %> prohibited this postulation_pet from being saved:</h2>
@@ -11,27 +11,22 @@
     </div>
   <% end %>
 
-  
   <%= form.hidden_field :pet_id %>
   <%= form.hidden_field :user_id %>
   <%= form.hidden_field :state %>
 
   <% @questions.each do |question| %>
-    <div class="field">
+    <div class="form-label-group my-3">
       <%= question.text %>
       <%= form.fields_for "answer_pets[]", question.answer_pets.build do |answer_form| %>
           <%= answer_form.hidden_field :question_id, value: question.id %>
-          <%= answer_form.text_field :text, value: @postulation_pet.getAnswer(@postulation_pet.id , question.id) %>
+          <%= answer_form.text_field :text, :required => true , value: @postulation_pet.getAnswer(@postulation_pet.id , question.id), class: "form-control" %>
       <% end %>
-     </div>
+    </div>
   <% end %>
 
-
-
-
-   
-
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Postular",  class: "btn btn-lg btn-primary btn-block", method: :post,data: {disable_with: "Procesando..."} %>
   </div>
 <% end %>
+

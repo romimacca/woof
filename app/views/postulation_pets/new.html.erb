@@ -1,5 +1,7 @@
-<h1>New Postulation Pet</h1>
+<div id="postulations" class="container new_postulation">
+<h1>Postulacion para adoptar a <b><%= @postulation_pet.pet%></b> </h1>
 
 <%= render 'form', postulation_pet: @postulation_pet %>
 
-<%= link_to 'Back', postulation_pets_path %>
+<%= link_to 'Back', root_path%>
+</div>
