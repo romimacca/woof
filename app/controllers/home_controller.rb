@@ -3,7 +3,8 @@ class HomeController < ApplicationController
 
   def index
     @pets = Pet.order(created_at: :asc)
-    @pet_available = Pet.where(is_adopted: false)
+    @pet_available = Pet.where(is_adopted: false).order(created_at: :asc)
+
     
   end
 
@@ -22,7 +23,5 @@ class HomeController < ApplicationController
   def pet_postulation
    @pet_postulations = PostulationPet.where(pet_id: params[:pet_id].to_i)
   end
-  
-  
   
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_231501) do
+ActiveRecord::Schema.define(version: 2020_12_04_124925) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_231501) do
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
-    t.text "metadata"
+    t.text "metadata" 
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
     t.datetime "created_at", null: false
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_231501) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "sterilized"
-    t.integer "age"
+    t.string "age"
     t.boolean "is_adopted", default: true
     t.index ["user_id"], name: "index_pets_on_user_id"
   end

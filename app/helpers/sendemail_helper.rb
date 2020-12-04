@@ -18,7 +18,7 @@ module SendemailHelper
           }]
         }
 
-        sg = SendGrid::API.new(api_key: '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')
+        sg = SendGrid::API.new(api_key: ENV['API_SENDGRID_TOKEN'])
         response = sg.client.mail._("send").post(request_body: data) 
 
 

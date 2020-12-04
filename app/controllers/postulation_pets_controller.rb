@@ -29,7 +29,6 @@ class PostulationPetsController < ApplicationController
   # POST /postulation_pets
   # POST /postulation_pets.json
   def create
-    byebug
     @postulation_pet = PostulationPet.new(postulation_pet_params)
     respond_to do |format|
       if @postulation_pet.save
