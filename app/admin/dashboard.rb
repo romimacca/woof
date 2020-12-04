@@ -10,9 +10,14 @@ ActiveAdmin.register_page "Dashboard" do
     end
 
     # Here is an example of a simple dashboard with columns and panels.
+
     
+
     columns do
       column do
+        h2 "Usuarios registrados por día"
+        render 'shared/users_chart'
+
         panel "Recent Pets" do
           ul do
             Pet.last(5).map do |pet|
@@ -21,13 +26,16 @@ ActiveAdmin.register_page "Dashboard" do
           end
         end
       end
-
-
       column do
+        h2 "Mascotas ingresadas por día"
+        render 'shared/pets_chart'
+
+
         panel "Info" do
           para "Welcome to ActiveAdmin."
         end
       end
     end
+
   end 
 end

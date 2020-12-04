@@ -18,7 +18,5 @@ Rails.application.routes.draw do
   get "my_postulations", to: "home#my_postulations", as: "my_postulations"
   get "pet/:pet_id/postulation", to: "home#pet_postulation", as: "pet_postulation"
 
-  get "/send_email", to: "home#send_email", as: 'send_email'
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

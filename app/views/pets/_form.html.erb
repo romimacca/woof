@@ -11,53 +11,48 @@
       </ul>
     </div>
   <% end %>
+  <div class="form-group">
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field :name, class: "form-control" %>
   </div>
   <div class="field"> 
     <%= form.label :age %>
-    <%= form.text_field :age %>
+    <%= form.text_field :age, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :sex %>
-    <%= form.text_field :sex %>
+    <%= form.text_field :sex, class: "form-control" %>
   </div>
 
   <div class="field"> 
     <%= form.label :sterilized %>
-    <%= form.text_field :sterilized %>
+    <%= form.text_field :sterilized, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :size %>
-    <%= form.text_field :size %>
+    <%= form.text_field :size, class: "form-control" %>
   </div>
 
   <div class="field">
     <%= form.label :breed %>
-    <%= form.text_field :breed %>
+    <%= form.text_field :breed, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :photos %>
-    <%= form.file_field :photos, multiple: true %>
-  </div>
-
-  <div class="field"> 
-    <%= form.label :breed %>
-    <%= form.text_field :breed %>
-  </div>
 
 
    <div class="field">
     <%= form.label :history %>
-    <%= form.text_area :history %>
+    <%= form.text_area :history, class: "form-control" %>
   </div>
   
-
+  <div class="field">
+    <%= form.label :photos %>
+    <%= form.file_field :photos, multiple: true, class: "form-control" %>
+  </div>
   
   <%= form.label :question_ids %>
     <%= form.collection_check_boxes(:question_ids, @questions, :id, :text) do |q| %>

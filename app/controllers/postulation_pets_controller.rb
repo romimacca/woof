@@ -1,3 +1,4 @@
+include SendemailHelper
 class PostulationPetsController < ApplicationController
   before_action :set_postulation_pet, only: [:show, :edit, :update, :destroy]
 
@@ -9,7 +10,7 @@ class PostulationPetsController < ApplicationController
 
   # GET /postulation_pets/1
   # GET /postulation_pets/1.json
-  def show 
+  def show
   end
 
   # GET /postulation_pets/new
@@ -28,6 +29,7 @@ class PostulationPetsController < ApplicationController
   # POST /postulation_pets
   # POST /postulation_pets.json
   def create
+    byebug
     @postulation_pet = PostulationPet.new(postulation_pet_params)
     respond_to do |format|
       if @postulation_pet.save
@@ -35,10 +37,12 @@ class PostulationPetsController < ApplicationController
         @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
 
         format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully created.' }
-        format.json { render :show, status: :created, location: @postulation_pet }
+        format.js
+        # format.json { render :show, status: :created, location: @postulation_pet }
       else
         format.html { render :new }
-        format.json { render json: @postulation_pet.errors, status: :unprocessable_entity }
+        format.js
+        # format.json { render json: @postulation_pet.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,6 +50,7 @@ class PostulationPetsController < ApplicationController
   # PATCH/PUT /postulation_pets/1
   # PATCH/PUT /postulation_pets/1.json
   def update
+   
     respond_to do |format|
       if @postulation_pet.update(postulation_pet_params)
 
@@ -53,9 +58,17 @@ class PostulationPetsController < ApplicationController
           @postulation_pet.addAnswer(params[:postulation_pet][:answer_pets], @postulation_pet.id )
         end
         @postulation_pet.setAdopted(params[:postulation_pet][:pet_id], params[:postulation_pet][:state]== 'aceptado' )
+        
+        if params[:postulation_pet][:state]== 'aceptado'
+          send_mail(@postulation_pet.user.email, "Hemos encontrado a tu próximo mejor amigo", "ACEPTADO" )
+        elsif params[:postulation_pet][:state]== 'rechazado'
+          send_mail(@postulation_pet.user.email, "Lo sentimos, han rechazado tu postulación", "RECHAZADO" )
+        end
 
         format.html { redirect_to @postulation_pet, notice: 'Postulation pet was successfully updated.' }
         format.json { render :show, status: :ok, location: @postulation_pet }
+        
+
       else
         format.html { render :edit }
         format.json { render json: @postulation_pet.errors, status: :unprocessable_entity }
@@ -84,3 +97,4 @@ class PostulationPetsController < ApplicationController
       params.require(:postulation_pet).permit(:pet_id, :user_id, { question_ids: []}, {answer_pet_id: []}, :state )
     end
 end
+

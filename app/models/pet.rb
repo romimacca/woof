@@ -9,6 +9,14 @@ class Pet < ApplicationRecord
   def getPetAdopted(is_adopted)
     Pet.where(is_adopted: is_adopted)
   end
+
+  def self.created_by_day
+    group_by_day(:created_at).count
+  end
+
+  def to_s
+    self.email
+  end
   
 end
  

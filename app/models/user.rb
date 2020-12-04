@@ -20,4 +20,12 @@ class User < ApplicationRecord
       user.username = auth.info.name
     end
   end
+
+  def self.created_by_day
+    group_by_day(:created_at).count
+  end
+
+  def to_s
+    self.email
+  end
 end
