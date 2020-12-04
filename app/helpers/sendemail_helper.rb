@@ -10,7 +10,7 @@ module SendemailHelper
             "subject" => subject
           }],
           "from" => {
-            "email" => "adriana@clay.cl"
+            "email" => "adriana@bou.cl"
           },
           "content" => [{
             "type" => "text/plain",
@@ -18,7 +18,7 @@ module SendemailHelper
           }]
         }
 
-        sg = SendGrid::API.new(api_key: ENV['API_SENDGRID_TOKEN'])
+        sg = SendGrid::API.new(api_key: ENV['API_TOKEN'])
         response = sg.client.mail._("send").post(request_body: data) 
     end
 end
